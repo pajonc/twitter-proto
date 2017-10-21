@@ -10,6 +10,7 @@
 
     <properties>
         <junit.version>4.11</junit.version>
+        <vertx.version>3.4.2</vertx.version>
     </properties>
 
     <build>
@@ -47,12 +48,23 @@
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
+            <version>${vertx.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-unit</artifactId>
+            <version>${vertx.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <repositories>
         <repository>
-            <id>ix-nexus</id>
-            <url>http://nexus.sabre.com/content/groups/all_repos</url>
+            <id>apache-maven-repo</id>
+            <url>http://repo.maven.apache.org/maven2/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -61,14 +73,9 @@
             </snapshots>
         </repository>
         <repository>
-            <id>maven-repo</id>
-            <url>https://repo.maven.apache.org/maven2/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
+            <id>real-maven-central</id>
+            <name>mvnrepository</name>
+            <url>http://central.maven.org/maven2/</url>
         </repository>
     </repositories>
 
