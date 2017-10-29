@@ -1,15 +1,12 @@
 package com.pajonc.twitter.server;
 
-import com.pajonc.twitter.model.User;
 
-public interface Server {
+public interface Server<T> {
 
-    void registerUser(User user);
+    void startServer();
 
-    void subscribeChannel(String channel, User user);
+    void stopServer();
 
-    void unSubscribeChannel(String channel, User user);
-
-    void sendMessage(String channel, User user);
+    T getServer();
 
 }

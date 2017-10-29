@@ -4,13 +4,20 @@ import com.pajonc.twitter.model.User;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.eventbus.EventBus;
 
-public class Sender extends AbstractVerticle {
+/**
+ * Implemenation for Sender with reply.
+ * It sends message only to one subscriber and register reply from recipient.
+ */
+public class SenderWithReply extends AbstractVerticle {
 
-    private String address;
+    private String channel;
     private User user;
+    private String message;
 
-    public Sender(String address, User user) {
-        this.address = address;
+    public SenderWithReply(String channel, User user, String message) {
+        this.channel = channel;
+        this.user = user;
+        this.message = message;
     }
 
     @Override
@@ -19,10 +26,10 @@ public class Sender extends AbstractVerticle {
         EventBus eb = vertx.eventBus();
 
         // Send a message every second
-        vertx.setPeriodic(1000, v -> {
+//        vertx.setPeriodic(1000, v -> {
 
             String message = "ping!";
-            eb.send(this.address, message, reply -> {
+            eb.send(this.channel, message, reply -> {
                 user.addMessage(message);
                 if (reply.succeeded()) {
                     // added only for test purposes Point to Point reply
@@ -33,6 +40,6 @@ public class Sender extends AbstractVerticle {
                 }
             });
 
-        });
+//        });
     }
 }

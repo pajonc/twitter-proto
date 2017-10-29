@@ -4,6 +4,10 @@ import com.pajonc.twitter.model.User;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.eventbus.EventBus;
 
+/**
+ * Receiver verticle implementation. Register on channel and listen for messages from Vertx Bus.
+ *
+ */
 public class Receiver extends AbstractVerticle {
 
     private String channel;
@@ -19,7 +23,7 @@ public class Receiver extends AbstractVerticle {
         EventBus eb = vertx.eventBus();
 
         eb.consumer(this.channel, message -> {
-            System.out.println("Received message: " + message.body());
+            System.out.println("Received message: " + message.body()+" by user "+user.getName());
             user.addMessage((String) message.body());
         });
 

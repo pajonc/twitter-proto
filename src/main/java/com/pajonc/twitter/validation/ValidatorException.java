@@ -8,6 +8,6 @@ public class ValidatorException extends RuntimeException {
 
     @Override
     public String getMessage() {
-        return "Validation exception, length too long: " + super.getMessage();
+        return "Validation exception: " + super.getMessage();
     }
 }

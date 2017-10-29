@@ -5,7 +5,8 @@ import io.vertx.core.AbstractVerticle;
 import io.vertx.core.eventbus.EventBus;
 
 /**
- * Class created only for test purpose to simulate Point two Point behaviour
+ * Class created only for test purpose to simulate Point two Point behaviour.
+ * Get Response from Sender and reply with response.
  */
 public class ReceiverWithReply extends AbstractVerticle {
 
@@ -22,13 +23,11 @@ public class ReceiverWithReply extends AbstractVerticle {
         EventBus eb = vertx.eventBus();
 
         eb.consumer(this.channel, message -> {
-
             System.out.println("Received message: " + message.body());
             user.addMessage((String) message.body());
             // Now send back reply
             message.reply("pong!");
             user.addMessage((String) message.body());
-
         });
 
     }

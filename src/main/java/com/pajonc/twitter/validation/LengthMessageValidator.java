@@ -5,7 +5,7 @@ public class LengthMessageValidator implements Validator<String> {
     @Override
     public void validate(String obj) {
         if (obj.length() > 140) {
-            throw new ValidatorException(obj);
+            throw new ValidatorException(obj + " too long!");
         }
 
     }
